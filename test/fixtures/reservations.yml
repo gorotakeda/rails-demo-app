@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  prayer_type: one
+  time_slot: one
+  reserved_date: 2025-03-25
+  number_of_people: 1
+  note: MyText
+  status: MyString
+
+two:
+  user: two
+  prayer_type: two
+  time_slot: two
+  reserved_date: 2025-03-25
+  number_of_people: 1
+  note: MyText
+  status: MyString
