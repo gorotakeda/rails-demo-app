@@ -10,11 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_25_082724) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_25_083711) do
   create_table "prayer_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.integer "price", null: false
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "prayer_type_id", null: false
+    t.bigint "time_slot_id", null: false
+    t.date "reserved_date"
+    t.integer "number_of_people"
+    t.text "note"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prayer_type_id"], name: "index_reservations_on_prayer_type_id"
+    t.index ["reserved_date", "time_slot_id"], name: "index_reservations_on_reserved_date_and_time_slot_id"
+    t.index ["time_slot_id"], name: "index_reservations_on_time_slot_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "time_slots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.time "start_time"
+    t.integer "capacity"
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,4 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_25_082724) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "reservations", "prayer_types"
+  add_foreign_key "reservations", "time_slots"
+  add_foreign_key "reservations", "users"
 end
