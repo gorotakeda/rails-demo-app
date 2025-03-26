@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title 神社御祈祷予約システム
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+
+  body.page
+    header.header
+      .header-container
+        = link_to "神社御祈祷予約", root_path, class: "header-logo"
+        nav.header-nav
+          = link_to "ホーム", root_path, class: "nav-link"
+          = link_to "新規予約", new_reservation_path, class: "nav-link"
+          = link_to "予約確認", reservations_path, class: "nav-link"
+
+    - if notice
+      .notice = notice
+    - if alert
+      .alert = alert
+
+    main.main
+      = yield
+
+    footer.footer
+      .footer-container
+        p.copyright &copy; 2024 神社御祈祷予約システム All Rights Reserved.

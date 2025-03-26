@@ -1,0 +1,206 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// 変数
+$primary-color: #4338ca;
+$secondary-color: #059669;
+$text-color: #1f2937;
+$background-color: #f3f4f6;
+$white: #ffffff;
+
+// ミックスイン
+@mixin card {
+  background-color: $white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+// 基本スタイル
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// ヘッダー
+.header {
+  background-color: $primary-color;
+  color: $white;
+  width: 100%;
+  
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+.nav-link {
+  color: $white;
+  margin-left: 1rem;
+  text-decoration: none;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// メインコンテンツ
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  @include card;
+  
+  &-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  &-text {
+    margin-bottom: 1rem;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  
+  &-primary {
+    background-color: $primary-color;
+    color: $white;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  
+  &-secondary {
+    background-color: $secondary-color;
+    color: $white;
+    
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}
+
+// 御祈祷の種類
+.prayer-types {
+  margin-bottom: 3rem;
+}
+
+.prayer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.prayer-card {
+  @include card;
+  
+  &-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  &-description {
+    color: lighten($text-color, 20%);
+    margin-bottom: 0.5rem;
+  }
+  
+  &-price {
+    color: $primary-color;
+    font-weight: bold;
+  }
+}
+
+// お知らせ
+.notice-section {
+  @include card;
+}
+
+.notice-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// フッター
+.footer {
+  background-color: #1f2937;
+  color: $white;
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  width: 100%;
+  
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+}
+
+.copyright {
+  text-align: center;
+}
+
+// レスポンシブ対応
+@media (max-width: 768px) {
+  .action-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .prayer-grid {
+    grid-template-columns: 1fr;
+  }
+}
