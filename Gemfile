@@ -78,3 +78,5 @@ end
 
 gem 'slim-rails'
 gem 'sass-rails'
+gem 'devise'
+gem 'devise-i18n'  # 日本語化対応

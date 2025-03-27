@@ -66,9 +66,14 @@ body {
   }
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .nav-link {
   color: $white;
-  margin-left: 1rem;
   text-decoration: none;
   
   &:hover {
@@ -204,3 +209,31 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.logout-button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  color: $white;
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  // button_toで生成されるform要素のスタイル
+  form {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+}
+
+// コンポーネント
+@import "components/flash";
+
+// Deviseのスタイル
+@import "devise/registrations";
+@import "devise/sessions";

@@ -14,8 +14,13 @@ html
         = link_to "神社御祈祷予約", root_path, class: "header-logo"
         nav.header-nav
           = link_to "ホーム", root_path, class: "nav-link"
-          = link_to "新規予約", new_reservation_path, class: "nav-link"
-          = link_to "予約確認", reservations_path, class: "nav-link"
+          - if user_signed_in?
+            = link_to "新規予約", new_reservation_path, class: "nav-link"
+            = link_to "予約確認", reservations_path, class: "nav-link"
+            = button_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link logout-button", form: { data: { turbo: false } }
+          - else
+            = link_to "ログイン", new_user_session_path, class: "nav-link"
+            = link_to "新規登録", new_user_registration_path, class: "nav-link"
 
     - if notice
       .notice = notice
