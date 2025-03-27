@@ -1,0 +1,32 @@
+.reservation-container
+  h2 新規御祈祷予約
+
+  = form_with(model: @reservation, local: true) do |f|
+    - if @reservation.errors.any?
+      .error-messages
+        ul
+          - @reservation.errors.full_messages.each do |message|
+            li = message
+
+    .form-group
+      = f.label :prayer_type_id, "御祈祷の種類"
+      = f.collection_select :prayer_type_id, PrayerType.active, :id, :name, { prompt: "選択してください" }, class: "form-select"
+
+    .form-group
+      = f.label :reserved_date, "予約日"
+      = f.date_field :reserved_date, class: "form-input"
+
+    .form-group
+      = f.label :time_slot_id, "時間帯"
+      = f.collection_select :time_slot_id, TimeSlot.all, :id, :formatted_time, { prompt: "選択してください" }, class: "form-select"
+
+    .form-group
+      = f.label :number_of_people, "参列人数"
+      = f.number_field :number_of_people, class: "form-input", min: 1
+
+    .form-group
+      = f.label :note, "備考"
+      = f.text_area :note, class: "form-input"
+
+    .form-actions
+      = f.submit "予約を確定する", class: "button button-primary"

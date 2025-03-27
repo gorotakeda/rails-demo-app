@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      reservation: "御祈祷予約"
+    attributes:
+      reservation:
+        prayer_type_id: "御祈祷の種類"
+        reserved_date: "予約日"
+        time_slot_id: "時間帯"
+        number_of_people: "参列人数"
+        note: "備考"
+    errors:
+      models:
+        reservation:
+          attributes:
+            reserved_date:
+              blank: "を入力してください"
+              invalid: "が無効です"
+            number_of_people:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than: "は1人以上で入力してください"
+              not_an_integer: "は整数で入力してください"
+            prayer_type_id:
+              blank: "を選択してください"
+            time_slot_id:
+              blank: "を選択してください" 
