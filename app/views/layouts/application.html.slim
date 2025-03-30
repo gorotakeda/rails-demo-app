@@ -6,7 +6,9 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    script src="https://js.stripe.com/v3/"
     = javascript_importmap_tags
+    = javascript_include_tag "application", defer: true
 
   body.page
     header.header

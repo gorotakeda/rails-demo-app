@@ -1,0 +1,27 @@
+ .reservation-container
+  h2 予約内容の確認
+
+  .reservation-details
+    p
+      strong 御祈祷の種類:
+      = @reservation.prayer_type.name
+    p
+      strong 予約日:
+      = l @reservation.reserved_date, format: :long
+    p
+      strong 時間帯:
+      = @reservation.time_slot.formatted_time
+    p
+      strong 参列人数:
+      = @reservation.number_of_people
+    p
+      strong 料金:
+      = number_to_currency(@reservation.prayer_type.price, unit: '¥', precision: 0)
+    - if @reservation.note.present?
+      p
+        strong 備考:
+        = @reservation.note
+
+  .payment-actions
+    = button_to '決済に進む', reservation_checkouts_path(@reservation), method: :post, class: 'button button-primary', data: { turbo: false, turbo_confirm: '決済画面に移動しますか？' }
+    = link_to '修正する', new_reservation_path(@reservation), class: 'button button-secondary'

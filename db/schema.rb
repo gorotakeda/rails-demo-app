@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_26_235632) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_27_025518) do
   create_table "prayer_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_26_235632) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_intent_id"
     t.index ["prayer_type_id"], name: "index_reservations_on_prayer_type_id"
     t.index ["reserved_date", "time_slot_id"], name: "index_reservations_on_reserved_date_and_time_slot_id"
     t.index ["time_slot_id"], name: "index_reservations_on_time_slot_id"

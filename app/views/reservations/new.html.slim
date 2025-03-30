@@ -29,4 +29,9 @@
       = f.text_area :note, class: "form-input"
 
     .form-actions
-      = f.submit "予約を確定する", class: "button button-primary"
+      = f.submit "予約内容を確認する", class: "button button-primary"
+
+= content_for :scripts do
+  javascript:
+    window.stripeKey = "#{Rails.configuration.stripe[:publishable_key]}";
+    console.log('Stripe Key loaded:', window.stripeKey ? 'Yes' : 'No');

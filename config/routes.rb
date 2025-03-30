@@ -6,8 +6,17 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  resources :reservations, only: [:index, :new, :create]
+  resources :reservations, only: [:index, :new, :create, :show] do
+    collection do
+      post :confirm
+    end
+  end
+  
+  resources :checkouts, only: [:create]
+  
   resources :prayer_types, only: [:index]
+  
+  post 'webhooks/stripe', to: 'webhooks#stripe'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
