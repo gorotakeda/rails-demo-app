@@ -1,41 +1,43 @@
 class WebhooksController < ApplicationController
+  # CSRFトークン検証をスキップ（外部サービスからのリクエストのため）
   skip_before_action :verify_authenticity_token
 
   def stripe
-    Rails.logger.info "Webhook received from Stripe"
-    payload = request.body.read
+    # リクエストボディを読み込む
+    request_body = request.body.read
+    # Stripeの署名ヘッダーを取得
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
+    # Stripeのエンドポイントシークレットを取得
     endpoint_secret = ENV['STRIPE_WEBHOOK_SECRET']
     
-    Rails.logger.info "Endpoint secret: #{endpoint_secret.present? ? 'present' : 'missing'}"
-    
     begin
+      # Stripeのイベントを解析
       event = Stripe::Webhook.construct_event(
-        payload, sig_header, endpoint_secret
+        request_body, sig_header, endpoint_secret
       )
-      Rails.logger.info "Event type: #{event.type}"
     rescue JSON::ParserError => e
-      Rails.logger.error "Invalid payload: #{e.message}"
+      # JSON解析エラー時の処理
       render json: {error: e.message}, status: 400
       return
     rescue Stripe::SignatureVerificationError => e
-      Rails.logger.error "Invalid signature: #{e.message}"
+      # 署名検証エラー時の処理
       render json: {error: e.message}, status: 400
       return
     end
 
     # イベント処理
-    case event.type
-    when 'checkout.session.completed'
-      Rails.logger.info "Processing checkout.session.completed event"
+    if event.type == 'checkout.session.completed'
+      # 決済が完了した場合の処理
       handle_checkout_session_completed(event.data.object)
     end
 
+    # リクエストを受け取ったことを確認
     render json: {received: true}
   end
 
   private
 
+  # 決済が完了した場合の処理
   def handle_checkout_session_completed(session)
     # セッションからメタデータを取得
     metadata = session.metadata

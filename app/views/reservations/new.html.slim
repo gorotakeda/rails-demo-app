@@ -34,4 +34,3 @@
 = content_for :scripts do
   javascript:
     window.stripeKey = "#{Rails.configuration.stripe[:publishable_key]}";
-    console.log('Stripe Key loaded:', window.stripeKey ? 'Yes' : 'No');

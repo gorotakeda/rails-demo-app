@@ -1,24 +1,35 @@
-# README
+## 技術スタック
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 主要なGem
 
-Things you may want to cover:
+* **Ruby**: 3.1.4
+* **Rails**: 7.1.5
+* **データベース**: MySQL (mysql2 ~> 0.5)
 
-* Ruby version
+#### フロントエンド
+* Slim (slim-rails) - テンプレートエンジン
+* Sass (sass-rails) - CSSプリプロセッサ
+* Hotwire (turbo-rails, stimulus-rails) - SPA風のページ更新
+* Importmap (importmap-rails) - JavaScriptモジュール管理
 
-* System dependencies
+#### ユーザー認証
+* Devise - 認証機能
+* Devise-i18n - Devise日本語化
 
-* Configuration
+#### 決済
+* Stripe - 決済処理
 
-* Database creation
+#### その他
+* dotenv-rails - 環境変数管理
+* Puma - Webサーバー
+* Bootsnap - 起動時間の短縮
 
-* Database initialization
+### 開発・テスト環境
+* Debug - デバッグツール
+* Web-console - 例外ページのコンソール
+* Capybara - システムテスト
+* Selenium Webdriver - ブラウザテスト
 
-* How to run the test suite
+## 環境構築の手順
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+プロジェクトのセットアップについては「環境構築」セクションを参照してください。

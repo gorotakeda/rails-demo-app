@@ -33,14 +33,6 @@ class ReservationsController < ApplicationController
     redirect_to reservations_path, alert: "該当する予約が見つかりませんでした"
   end
 
-  def confirm
-    @reservation = current_user.reservations.build(reservation_params)
-    
-    if @reservation.invalid?
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   private
 
   def reservation_params
