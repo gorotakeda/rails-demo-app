@@ -1,0 +1,18 @@
+.notice, .alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .notice {
+    background-color: #f0fff4;
+    border: 1px solid #68d391;
+    color: #2f855a;
+  }
+  
+  .alert {
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+    color: #c53030;
+  }

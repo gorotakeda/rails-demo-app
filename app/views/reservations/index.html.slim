@@ -1,0 +1,26 @@
+.reservations-container
+  h2 予約一覧
+
+  - if @reservations.any?
+    .reservation-list
+      - @reservations.each do |reservation|
+        .reservation-card
+          .reservation-header
+            h3 = reservation.prayer_type.name
+            span.status class="status-#{reservation.status}" = reservation.status
+          .reservation-body
+            p
+              strong 予約日: 
+              = l reservation.reserved_date, format: :long
+            p
+              strong 時間帯: 
+              = reservation.time_slot.formatted_time
+            p
+              strong 料金: 
+              = number_to_currency(reservation.prayer_type.price, unit: '¥', precision: 0)
+          .reservation-actions
+            = link_to '詳細を見る', reservation_path(reservation), class: 'button button-secondary'
+  - else
+    .no-reservations
+      p 予約はありません。
+      = link_to '新規予約する', new_reservation_path, class: 'button button-primary' 

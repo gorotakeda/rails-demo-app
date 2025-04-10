@@ -1,0 +1,116 @@
+// 新規登録フォームのスタイル
+.registration-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #333;
+    }
+  }
+  
+  // フォームグループのスタイル
+  .form-group {
+    margin-bottom: 1.5rem;
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+  
+    em {
+      font-size: 0.875rem;
+      color: #666;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  // 入力フィールドのスタイル
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  
+    &:focus {
+      outline: none;
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    }
+  }
+  
+  // ボタンのスタイル
+  .form-actions {
+    margin-top: 2rem;
+    text-align: center;
+  
+    .button-primary {
+      background-color: #4a90e2;
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: darken(#4a90e2, 10%);
+      }
+    }
+  }
+  
+  // リンクのスタイル
+  .devise-links {
+    margin-top: 1.5rem;
+    text-align: center;
+  
+    a {
+      color: #4a90e2;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+      display: inline-block;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  // エラーメッセージのスタイル
+  #error_explanation {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 4px;
+    color: #c53030;
+  
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #c53030;
+      text-align: left;
+    }
+  
+    ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+  
+      li {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+  }

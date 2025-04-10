@@ -1,0 +1,31 @@
+.container
+  h1.page-title 神社御祈祷予約システム
+
+  .action-cards
+    .card
+      h2.card-title 新規御祈祷予約
+      p.card-text ご希望の御祈祷の予約を承ります。
+      = link_to "新規予約", new_reservation_path, class: "button button-primary"
+
+    .card
+      h2.card-title 予約確認
+      p.card-text 現在の予約状況を確認できます。
+      = link_to "予約一覧", reservations_path, class: "button button-secondary"
+
+  .prayer-types
+    h2.section-title 御祈祷の種類
+    .prayer-grid
+      - PrayerType.active.each do |prayer_type|
+        .prayer-card
+          h3.prayer-title = prayer_type.name
+          p.prayer-description = prayer_type.description
+          p.prayer-price
+            | 料金: 
+            = number_to_currency(prayer_type.price, unit: '¥', precision: 0)
+
+  .notice-section
+    h2.section-title お知らせ
+    ul.notice-list
+      li 予約は3ヶ月先まで受け付けております。
+      li 当日のキャンセルはご遠慮ください。
+      li ご不明な点がございましたら、お電話にてお問い合わせください。(TEL:052-XXX-XXXX)

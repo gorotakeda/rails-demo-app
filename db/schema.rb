@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_25_083711) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_27_025518) do
   create_table "prayer_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_25_083711) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_intent_id"
     t.index ["prayer_type_id"], name: "index_reservations_on_prayer_type_id"
     t.index ["reserved_date", "time_slot_id"], name: "index_reservations_on_reserved_date_and_time_slot_id"
     t.index ["time_slot_id"], name: "index_reservations_on_time_slot_id"
@@ -49,10 +50,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_25_083711) do
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "phone"
-    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "reservations", "prayer_types"

@@ -1,0 +1,37 @@
+.registration-container
+  h2 新規登録
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+
+    .form-group
+      = f.label :email, "メールアドレス"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input"
+
+    .form-group
+      = f.label :last_name, "姓"
+      = f.text_field :last_name, class: "form-input"
+
+    .form-group
+      = f.label :first_name, "名"
+      = f.text_field :first_name, class: "form-input"
+
+    .form-group
+      = f.label :phone, "電話番号"
+      = f.text_field :phone, class: "form-input"
+
+    .form-group
+      = f.label :password, "パスワード"
+      - if @minimum_password_length
+        em
+          | （#{@minimum_password_length}文字以上）
+      = f.password_field :password, autocomplete: "new-password", class: "form-input"
+
+    .form-group
+      = f.label :password_confirmation, "パスワード（確認）"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input"
+
+    .form-actions
+      = f.submit "登録", class: "button button-primary"
+
+  = render "devise/shared/links"
